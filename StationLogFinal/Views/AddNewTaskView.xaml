@@ -1,0 +1,51 @@
+﻿<Page
+    x:Class="StationLogFinal.Views.AddNewTaskView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:StationLogFinal.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="using:StationLogFinal.ViewModel"
+    mc:Ignorable="d">
+    <Page.DataContext>
+        <viewModel:TaskViewModel></viewModel:TaskViewModel>
+    </Page.DataContext>
+    <Page.BottomAppBar>
+
+        <CommandBar >
+            <CommandBar.Content>
+                <Grid/>
+            </CommandBar.Content>
+            <AppBarButton Icon="Add" Label="Add"  Command="{Binding CreateCommand,Mode=TwoWay}" />
+            <!---->
+            <AppBarButton Icon="Home" Label="Cancel" Click="Add" />
+        </CommandBar>
+    </Page.BottomAppBar>
+    <Grid>
+        <Grid.Background>
+           <ImageBrush ImageSource="../Assets/1234.jpg"></ImageBrush>
+        </Grid.Background>
+        <StackPanel>
+            <TextBlock Text="Task ID" Padding="10"></TextBlock>
+            <TextBox Padding="9" x:Name="TaskId" PlaceholderText="TaskId" Margin="20"
+                     Text="{Binding NewTask.TaskId,Mode=TwoWay}" ></TextBox>
+            <TextBlock Text="Date" HorizontalAlignment="Left" Height="23" Margin="20,0,0,0" VerticalAlignment="Center"></TextBlock>
+            <DatePicker   Name="datePicker" 
+                          DayFormat="{}{day.integer} ({dayofweek.abbreviated})" 
+                          Foreground="Black" 
+                          Date="{Binding NewTask.DateOffset,Mode=TwoWay}" Margin="20,0,0,0" Width="276"/>
+            <TextBox Padding="10" TextWrapping="Wrap" x:Name="Description"  PlaceholderText="Description" Margin="20" Text="{Binding NewTask.Description ,Mode=TwoWay}"/>
+            <!---->
+            <ToggleSwitch Header="Is Repeatable" IsOn="{Binding NewTask.IsRepeatable,Mode=TwoWay}" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Center" Width="134" ></ToggleSwitch>
+            <TextBlock Text="Schduled Date" HorizontalAlignment="Left" Height="20" Margin="20,0,0,0" VerticalAlignment="Center"></TextBlock>
+            <DatePicker   Name="DatePicker" 
+                          DayFormat="{}{day.integer} ({dayofweek.abbreviated})" 
+                          Foreground="Black" 
+                          Date="{Binding NewTask.DateOffsetSchduledDate,Mode=TwoWay}" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Center" Width="276"/>
+            <TextBlock Text="Station ID" Padding="10"  HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Center"></TextBlock>
+            <TextBox x:Name="StationId"  PlaceholderText="StationId" Margin="20" Text="{Binding NewTask.StationId,Mode=TwoWay}"/>
+            <!---->
+
+        </StackPanel>
+    </Grid>
+</Page>
